@@ -15,6 +15,7 @@
 
 get_real_income <- function( directory = NULL,
                              filename = "2_1_53i.xls") {
+  . <- NULL
 
   if (! is.null(directory))  filename <- file.path( directory, filename )
 
