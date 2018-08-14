@@ -5,12 +5,10 @@
 \title{Get Real Income (2.1.53i)
 Get the Stadat 2.1.53 statistics}
 \usage{
-get_real_income(directory = NULL, filename = "2_1_53i.xls")
+get_real_income(directory = NULL)
 }
 \arguments{
 \item{directory}{Defaults to \code{NULL}.}
-
-\item{filename}{\code{2_1_53i.xls}.}
 }
 \description{
 Get Real Income (2.1.53i)

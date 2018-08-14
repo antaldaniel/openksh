@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^not_included$
 ^data-raw$
+^ksh_data$

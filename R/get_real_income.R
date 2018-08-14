@@ -1,7 +1,6 @@
 #' Get Real Income (2.1.53i)
 #' Get the Stadat 2.1.53 statistics
 #' @param directory Defaults to \code{NULL}.
-#' @param filename \code{2_1_53i.xls}.
 #' @importFrom magrittr %>%
 #' @importFrom readxl read_excel
 #' @importFrom purrr set_names
@@ -13,15 +12,22 @@
 #' }
 #' @export
 
-get_real_income <- function( directory = NULL,
-                             filename = "2_1_53i.xls") {
+get_real_income <- function( directory = NULL ) {
   . <- NULL
 
-  if (! is.null(directory) )  filename <- file.path( directory, filename )
+  stadat_name <- "2_1_53i"; filename <- paste0(stadat_name, ".xls")
+
+  if (! is.null(directory) ) {
+    if ( check_directory ( directory) ) {
+      filename <- file.path( directory, filename )
+    } else {
+      stop ( "The specified directory does not exist.")
+    }
+  }
 
   if (! file.exists(filename )) {
-    download_stadat_file("2_1_53i")
-    filename <- file.path("ksh_data", filename)
+    download_stadat_file("2_1_53i", directory)
+    message ( filename, " downloaded and saved.")
   }
 
   tmp <- readxl::read_excel(filename,

@@ -4,7 +4,7 @@
 \alias{check_directory}
 \title{Check if there is a directory to use}
 \usage{
-check_directory(directory)
+check_directory(directory = NULL)
 }
 \arguments{
 \item{directory}{Defaults to \code{NULL}. In this case the \code{ksh_data}
