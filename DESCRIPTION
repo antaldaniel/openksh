@@ -5,13 +5,14 @@ Version: 0.1.0
 Author: Who wrote it
 Maintainer: Daniel Antal <daniel.antal@ceemid.eu>
 Description: Creates machine readable, tidy datasets from Hungary's official statistics portal. 
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: purrr,
     readxl,
     magrittr,
     dplyr,
-    tidyr
+    tidyr,
+    stats
 RoxygenNote: 6.1.0
 Suggests: testthat

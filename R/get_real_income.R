@@ -5,6 +5,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom readxl read_excel
 #' @importFrom purrr set_names
+#' @importFrom stats ts
 #' @keywords ksh, hungary, opengov, openstatistics
 #' @examples
 #'\dontrun{
