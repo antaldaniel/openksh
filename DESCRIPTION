@@ -13,6 +13,7 @@ Imports: purrr,
     magrittr,
     dplyr,
     tidyr,
-    stats
+    stats,
+    utils
 RoxygenNote: 6.1.0
 Suggests: testthat
