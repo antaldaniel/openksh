@@ -16,12 +16,9 @@ download_stadat_file  <- function ( filename = "2_1_53i",
 
   if ( is.null (directory)) {
     directory <- "ksh_data"
-
   }
   url <- paste0("http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/xls/", filename, ".xls")
-  if (! file.exists(directory)){
-    dir.create(file.path(getwd(), directory))
-  }
+  openksh:::check_directory( directory )
 
   destfile <- file.path ( directory, paste0(filename, ".xls"))
 
