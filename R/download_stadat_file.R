@@ -23,7 +23,7 @@ download_stadat_file  <- function ( filename = "2_1_53i",
   destfile <- file.path ( directory, paste0(filename, ".xls"))
 
   utils::download.file(url, destfile, method = "auto",
-                quiet = FALSE, mode = "w",
+                quiet = FALSE, mode = "wb",
                 cacheOK = TRUE)
 
 }

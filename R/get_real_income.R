@@ -17,7 +17,12 @@ get_real_income <- function( directory = NULL,
                              filename = "2_1_53i.xls") {
   . <- NULL
 
-  if (! is.null(directory))  filename <- file.path( directory, filename )
+  if (! is.null(directory) )  filename <- file.path( directory, filename )
+
+  if (! file.exists(filename )) {
+    download_stadat_file("2_1_53i")
+    filename <- file.path("ksh_data", filename)
+  }
 
   tmp <- readxl::read_excel(filename,
                             sheet = 1,
