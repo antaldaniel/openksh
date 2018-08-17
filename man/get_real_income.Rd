@@ -5,10 +5,13 @@
 \title{Get Real Income (2.1.53i)
 Get the Stadat 2.1.53 statistics}
 \usage{
-get_real_income(directory = NULL)
+get_real_income(directory = NULL, class = NULL)
 }
 \arguments{
 \item{directory}{Defaults to \code{NULL}.}
+
+\item{class}{Defaults to \code{NULL}. If \code{ts} is specified, returns a
+time series object.}
 }
 \description{
 Get Real Income (2.1.53i)

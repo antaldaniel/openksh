@@ -11,9 +11,14 @@ check_directory <- function (directory = NULL) {
 
   if ( is.null (directory)) {
     directory <- "ksh_data"
+    if (! file.exists(directory)){
+      dir.create(file.path(getwd(), directory))
+      message ( file.path(getwd(), directory), " created.")
+    }
+  } else {
+    if (! file.exists(directory)) {
+      FALSE
+    } else {
+      TRUE }
   }
-  if (! file.exists(directory)){
-    dir.create(file.path(getwd(), directory))
-  }
-  message ( file.path(getwd(), directory), " created.")
 }
