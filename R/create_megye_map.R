@@ -3,12 +3,13 @@
 #' @param df The data.frame with the values to map. The data must be in long-form
 #' and contain only the values of a single point in time.
 #' @param megyeid The name of the Hungarian counties, defaults to \code{megye}.
-#' @param values  The name of numeric values, defaults to \code{values}.
+#' @param values_var  The name of numeric values, defaults to \code{values}.
 #' @importFrom magrittr %>%
 #' @importFrom readxl read_excel
 #' @importFrom dplyr mutate left_join filter
 #' @importFrom ggplot2 ggplot aes geom_sf theme theme_light scale_fill_gradient2
 #' @importFrom ggplot2 element_blank
+#' @importFrom stats median
 #' @keywords hungary, mapping, county, megye, choropleth
 #' @examples
 #'\dontrun{

@@ -12,7 +12,7 @@ and contain only the values of a single point in time.}
 
 \item{megyeid}{The name of the Hungarian counties, defaults to \code{megye}.}
 
-\item{values}{The name of numeric values, defaults to \code{values}.}
+\item{values_var}{The name of numeric values, defaults to \code{values}.}
 }
 \description{
 Create county map
