@@ -14,6 +14,7 @@ Imports: purrr,
     dplyr,
     tidyr,
     stats,
-    utils
+    utils,
+    ggplot2
 RoxygenNote: 6.1.0
 Suggests: testthat

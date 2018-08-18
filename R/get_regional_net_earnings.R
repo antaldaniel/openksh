@@ -25,6 +25,7 @@ get_regional_net_earnings <- function(
 
   message ("Unit: natural unit, square meter, for non-residential floor space thousand square meters")
   stadat_name <- "6_2_1_16i"; filename <- paste0(stadat_name, ".xls")
+  message ("avg_net_earnings unit: HUF, avg_net_earnings_index y/y percent")
 
   if (! is.null(directory) ) {
     if ( check_directory (directory) ) {
@@ -47,8 +48,8 @@ get_regional_net_earnings <- function(
     purrr::set_names (x =.,  nm = c( "name", "years", "values") ) %>%
     dplyr::filter (name != "neve") %>%
     dplyr::mutate ( var= dplyr::case_when(
-      grepl("\\$Nettó átlagkereset", name) ~ "avg_net_earning",
-      grepl(" év = 100,0%", name) ~ "avg_net_earning_index"
+      grepl("\\$Nettó átlagkereset", name) ~ "avg_net_earnings",
+      grepl(" év = 100,0%", name) ~ "avg_net_earnings_index"
          )) %>%
     tidyr::fill (var) %>%
     dplyr::filter (!is.na(values)) %>%

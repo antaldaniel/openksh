@@ -14,16 +14,16 @@
 #' @source \url{https://www.ksh.hu/docs/eng/xstadat/xstadat_annual/i_zrp002b.html}
 #' @examples
 #'\dontrun{
-#' get_regional_dwellings (region_level = "county")
+#' get_regional_building_permits (region_level = "county")
 #' }
 #' @export
 
-get_regional_dwellings <- function(
+get_regional_building_permits <- function(
                               directory = NULL,
                               region_level = NULL) {
   . <- NULL
 
-  message ("Unit: natural unit, square meter, for non-residential floor space thousand square meters")
+  message ("Units: natural unit, square meter, for non-residential floor space thousand square meters")
   stadat_name <- "6_2_2_3i"; filename <- paste0(stadat_name, ".xls")
 
   if (! is.null(directory) ) {

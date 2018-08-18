@@ -1,29 +1,29 @@
-#' Get number of new dwellings and  for Hungarian regions and counties
+#' Get economically activity population for Hungarian regions and counties
 #'
-#' 6.2.2.1. Dwelling stock and inhabitants per hundred dwellings, 1 January (2001–)
+#' 6.2.1.7. Economically active population (2000–)
 #' @param directory Defaults to \code{NULL}.
 #' @param region_level Any of \code{megye}, \code{county},
-#' \code{régió}, \code{region}, \code{nagyrégió}
-#' or \code{NULL} for all data units.
+#' \code{régió}, \code{region}, \code{nagyrégió} or \code{NULL} for all
+#' data units.
 #' @importFrom magrittr %>%
 #' @importFrom readxl read_excel
 #' @importFrom purrr set_names
 #' @importFrom dplyr mutate filter select left_join
 #' @importFrom tidyr gather spread fill
 #' @keywords ksh, hungary, opengov, openstatistics
-#' @source \url{https://www.ksh.hu/docs/eng/xstadat/xstadat_annual/i_wde003b.html}
+#' @source \url{https://www.ksh.hu/docs/eng/xstadat/xstadat_annual/i_qlf023b.html}
 #' @examples
 #'\dontrun{
-#' get_regional_dwellings (region_level = "county")
+#' get_regional_ec_active_population (region_level = "county")
 #' }
 #' @export
 
-get_regional_dwellings <- function( directory = NULL,
+get_regional_ec_active_population <- function( directory = NULL,
                               region_level = NULL) {
   . <- NULL
 
-  message ("dwellings, inhabitants_per_100_dwellings unit: natural unit")
-  stadat_name <- "6_2_2_1i"; filename <- paste0(stadat_name, ".xls")
+  message ("active_population unit: ezer f\u0151 - thousand")
+  stadat_name <- "6_2_1_7i"; filename <- paste0(stadat_name, ".xls")
 
   if (! is.null(directory) ) {
     if ( check_directory (directory) ) {
@@ -42,17 +42,9 @@ get_regional_dwellings <- function( directory = NULL,
                             sheet = 1,
                             skip = 1) %>%
     tidyr::gather ( years, values, !!3:ncol(.) ) %>%
+    purrr::set_names (., c( "name", "level", "years", "active_population")) %>%
     dplyr::mutate ( years = as.numeric(substr (as.character(years), 1,4))) %>%
-    purrr::set_names (., c( "name", "level", "years", "values")) %>%
-    dplyr::filter (name != "neve") %>%
-    dplyr::mutate ( var= dplyr::case_when(
-      grepl("\\$Lak", name) ~ "dwellings",
-      grepl("jutó lakos", name)  ~ "inhabitants_per_100_dwellings",
-         TRUE ~ NA_character_
-    ))  %>%
-    tidyr::fill (var) %>%
-    dplyr::filter (!is.na(values)) %>%
-    tidyr::spread ( var, values )
+    dplyr::filter (name != "neve")
 
   if (is.null(region_level)) return (tmp)
 

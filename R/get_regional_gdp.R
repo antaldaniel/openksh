@@ -1,14 +1,15 @@
 #' Get regional GDP data for Hungary
 #'
-#' Get the Stadat 6.3.1.1i statistics
+#' 6.3.1.1. Gross domestic product (GDP) (2000–)
 #' @param directory Defaults to \code{NULL}.
-#' @param class Defaults to \code{NULL}. If \code{ts} is specified, returns a
-#'  time series object.
+#' @param region_level Either \code{megye} or default \code{NULL} for all
+#' data units.
 #' @importFrom magrittr %>%
 #' @importFrom readxl read_excel
 #' @importFrom purrr set_names
 #' @importFrom stats ts
 #' @keywords ksh, hungary, opengov, openstatistics
+#' @source \url{https://www.ksh.hu/docs/eng/xstadat/xstadat_annual/i_qpt012b.html}
 #' @examples
 #'\dontrun{
 #' ksh_real_income <- get_real_income ()
@@ -16,11 +17,11 @@
 #' @export
 
 get_regional_gdp <- function( directory = NULL,
-                              region_level = NULL,
-                              class = NULL) {
+                              region_level = NULL) {
   . <- NULL
 
   stadat_name <- "6_3_1_1i"; filename <- paste0(stadat_name, ".xls")
+  message ("gdp unit: at purchasers'prices, million HUF")
 
   if (! is.null(directory) ) {
     if ( check_directory (directory) ) {
@@ -39,14 +40,20 @@ get_regional_gdp <- function( directory = NULL,
                             sheet = 1,
                             skip = 1) %>%
     tidyr::gather ( years, values, !!2:ncol(.) ) %>%
-    purrr::set_names (., c( "name", "years", "values"))
+    dplyr::mutate ( years = as.numeric(substr (as.character(years), 1,4))) %>%
+    purrr::set_names (., c( "name", "years", "gdp"))
 
-  megye <- dplyr::select ( openksh:::megye_map, name, isocode )
-  gyms  <- megye$name[which ( megye$isocode == "HU-GS") ]
+  if (is.null(region_level)) return(tmp)
 
-  tmp$name <- ifelse ( grepl ( "Moson-", tmp$name ), gyms, tmp$name )
+  if ( region_level %in% c("megye", "county")) {
+    megye <- dplyr::select ( openksh:::megye_map, name, isocode )
+    gyms  <- megye$name[which ( megye$isocode == "HU-GS") ]
 
-  tmp <- dplyr::left_join( megye, tmp, by = "name")
+    tmp$name <- ifelse ( grepl ( "Moson-", tmp$name ), gyms, tmp$name )
+
+    tmp <- dplyr::left_join( megye, tmp, by = "name")
+
+  }
 
   tmp
 }

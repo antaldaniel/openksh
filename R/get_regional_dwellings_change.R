@@ -14,11 +14,11 @@
 #' @source \url{https://www.ksh.hu/docs/eng/xstadat/xstadat_annual/i_zrs003b.html}
 #' @examples
 #'\dontrun{
-#' get_regional_dwellings (region_level = "county")
+#' get_regional_dwellings_change (region_level = "county")
 #' }
 #' @export
 
-get_regional_dwellings <- function(
+get_regional_dwellings_change <- function(
                               directory = NULL,
                               region_level = NULL) {
   . <- NULL
@@ -47,7 +47,7 @@ get_regional_dwellings <- function(
     purrr::set_names (., c( "name", "level", "years", "values")) %>%
     dplyr::filter (name != "neve") %>%
     dplyr::mutate ( var= dplyr::case_when(
-      grepl("\\Kiadott lak", name) ~ "permits",
+      grepl("\\$Kiadott lak", name) ~ "permits",
       grepl("vállalkozások álta", name) ~ "commercial",
       grepl("Megsz", name ) ~ "cessation",
       grepl("m2", name ) ~ "avg_floor_space" )) %>%

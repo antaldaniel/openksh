@@ -1,4 +1,4 @@
-#' Get rate of economically active population for Hungarian regions and counties
+#' Get economic activity rate for Hungarian regions and counties
 #'
 #' 6.2.1.9. Activity rate (2000–)
 #' @param directory Defaults to \code{NULL}.
@@ -14,15 +14,15 @@
 #' @source \url{https://www.ksh.hu/docs/eng/xstadat/xstadat_annual/i_qlf025b.html}
 #' @examples
 #'\dontrun{
-#' get_regional_activity_rate (region_level = "county")
+#' get_regional_economic_activity_rate (region_level = "county")
 #' }
 #' @export
 
-get_regional_activity_rate <- function( directory = NULL,
+get_regional_economic_activity_rate <- function( directory = NULL,
                                         region_level = NULL) {
   . <- NULL
 
-  message ("Unit: ezer f\u0151 - thousand")
+  message ("Unit: ezer / thousand")
   stadat_name <- "6_2_1_9i"; filename <- paste0(stadat_name, ".xls")
 
   if (! is.null(directory) ) {

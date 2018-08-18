@@ -3,17 +3,20 @@
 \name{get_regional_gdp}
 \alias{get_regional_gdp}
 \title{Get regional GDP data for Hungary}
+\source{
+\url{https://www.ksh.hu/docs/eng/xstadat/xstadat_annual/i_qpt012b.html}
+}
 \usage{
-get_regional_gdp(directory = NULL, region_level = NULL, class = NULL)
+get_regional_gdp(directory = NULL, region_level = NULL)
 }
 \arguments{
 \item{directory}{Defaults to \code{NULL}.}
 
-\item{class}{Defaults to \code{NULL}. If \code{ts} is specified, returns a
-time series object.}
+\item{region_level}{Either \code{megye} or default \code{NULL} for all
+data units.}
 }
 \description{
-Get the Stadat 6.3.1.1i statistics
+6.3.1.1. Gross domestic product (GDP) (2000–)
 }
 \examples{
 \dontrun{
