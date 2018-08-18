@@ -21,7 +21,7 @@
 get_regional_building_permits <- function(
                               directory = NULL,
                               region_level = NULL) {
-  . <- NULL
+  . <- isocode <- level <- values <- NULL
 
   message ("Units: natural unit, square meter, for non-residential floor space thousand square meters")
   stadat_name <- "6_2_2_3i"; filename <- paste0(stadat_name, ".xls")

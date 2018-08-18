@@ -20,7 +20,7 @@
 
 get_regional_theatre_cinema_admissions <- function( directory = NULL,
                                         region_level = NULL) {
-  . <- NULL
+  . <- isocode <- level <- values <- NULL
 
   message ("Unit: ezer / thousand")
   stadat_name <- "6_2_6_2i"; filename <- paste0(stadat_name, ".xls")
