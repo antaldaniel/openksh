@@ -8,6 +8,7 @@ Description: Creates machine readable, tidy datasets from Hungary's official sta
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 2.1.0)
 Imports: purrr,
     readxl,
     magrittr,
